@@ -10,7 +10,22 @@ class Board
   end
 
   def print_board(path)
-        
+    new_board = Array.new(8) { Array.new(8) }
+    path.each_with_index do |pos, i|
+      new_board[pos[0]][pos[1]] = i + 1
+    end
+
+    new_board.each do |row|
+      print "|"
+      row.each do |cell|
+        if cell.nil?
+          print "     |"
+        else
+          print "  #{cell}  |"
+        end
+      end
+      print "\n"
+    end
   end
 
   def knight_moves(start, target)
@@ -45,6 +60,8 @@ class Board
             print "#{pos}"
           end
         end
+        print "\n"
+        print_board(path.reverse)
 
         break
       end
